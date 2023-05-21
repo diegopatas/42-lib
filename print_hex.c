@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   print_hex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddiniz <ddiniz@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 17:40:03 by ddiniz            #+#    #+#             */
-/*   Updated: 2022/04/17 21:55:01 by ddiniz           ###   ########.fr       */
+/*   Created: 2022/06/10 23:14:46 by ddiniz            #+#    #+#             */
+/*   Updated: 2022/06/11 17:31:55 by ddiniz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	print_hex(unsigned int n, int casetype)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-	{
-		i++;
-	}
-	return (i);
+	if (casetype)
+		return (print_base(n, UNSIGNED_INT, BASE_HEX_UPP));
+	else
+		return (print_base(n, UNSIGNED_INT, BASE_HEX_LOW));
 }

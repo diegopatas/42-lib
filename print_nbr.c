@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_hex.c                                        :+:      :+:    :+:   */
+/*   print_nbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddiniz <ddiniz@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 23:14:46 by ddiniz            #+#    #+#             */
-/*   Updated: 2022/06/11 17:31:55 by ddiniz           ###   ########.fr       */
+/*   Created: 2022/06/10 22:36:19 by ddiniz            #+#    #+#             */
+/*   Updated: 2022/06/11 17:28:42 by ddiniz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_hex(unsigned int n, int casetype)
+int	print_nbr(long int n, int sign)
 {
-	if (casetype)
-		return (print_base(n, UNSIGNED_INT, BASE_HEX_UPP));
-	else
-		return (print_base(n, UNSIGNED_INT, BASE_HEX_LOW));
+	return (print_base(n, sign, BASE_DEC));
 }

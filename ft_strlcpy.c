@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddiniz <ddiniz@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 17:40:03 by ddiniz            #+#    #+#             */
-/*   Updated: 2022/06/11 17:09:50 by ddiniz           ###   ########.fr       */
+/*   Created: 2022/04/20 20:34:58 by ddiniz            #+#    #+#             */
+/*   Updated: 2023/05/21 13:05:38 by ddiniz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stddef.h>
+#include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t	i;
+	char	*save_dst;
+	size_t	len_src;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	save_dst = dst;
+	len_src = ft_strlen(src);
+	if (size--)
+	{
+		while (size-- && *src)
+			*dst++ = *src++;
+		*dst = '\0';
+	}
+	dst = save_dst;
+	// gnl dont use save_dst?
+	return (len_src);
 }

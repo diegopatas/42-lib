@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ptr.c                                        :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddiniz <ddiniz@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 23:34:46 by ddiniz            #+#    #+#             */
-/*   Updated: 2022/06/11 17:47:04 by ddiniz           ###   ########.fr       */
+/*   Created: 2022/06/10 17:26:14 by ddiniz            #+#    #+#             */
+/*   Updated: 2022/06/11 16:59:22 by ddiniz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_ptr(void *ptr)
+int	print_char(char c)
 {
-	int	len;
-
-	if (ptr == NULL)
-		return (print_str("(nil)"));
-	len = print_str("0x");
-	len += print_base((long int) ptr, UNSIGNED_INT, BASE_HEX_LOW);
-	return (len);
+	return ((int) write(1, &c, 1));
 }
