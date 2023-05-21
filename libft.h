@@ -15,8 +15,8 @@
 
 // STANDARD LIBS
 # include <stddef.h>
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
 # include <stdarg.h>
 
 // CONST
@@ -100,7 +100,10 @@ int		print_str(const char *str);
 int		ft_printf(const char *str, ...);
 
 // GET NEXT LINE METHODS
+size_t	gnl_strlen(const char *str);
+size_t	gnl_strlcpy(char *dest, const char *src, size_t size);
+char	*gnl_strchr(const char *str, char c);
 char	*line_getnext(int fd);
-size_t	ft_strlcpygnl(char *dst, const char *src, size_t size);
+void	new_str(char **line, const char *buffer, size_t size);
 
 #endif

@@ -27,7 +27,7 @@ SRC	+= ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
 SRC	+= ft_printf.c ft_itoag.c print_char.c print_str.c print_nbr.c \
 	   print_hex.c print_ptr.c print_base.c
 
-SRC	+= line_getnext.c ft_strlcpygnl.c
+SRC	+= line_getnext.c line_getnextutils.c
 
 OBJ	= $(SRC:%.c=%.o)
 NAME	= libft.a

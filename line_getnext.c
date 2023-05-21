@@ -12,26 +12,6 @@
 
 #include "libft.h"
 
-static void	line_update(char **line, const char *buffer, size_t size)
-{
-	char	*aux;
-	size_t	len_line;
-
-	aux = NULL;
-	if (buffer[0])
-	{
-		len_line = ft_strlen(*line);
-		aux = (char *)malloc((len_line + size + 1) * sizeof(char));
-		if (aux != NULL)
-		{
-			ft_strlcpygnl(aux, *line, len_line + 1);
-			ft_strlcpygnl(aux + len_line, buffer, size + 1);
-		}
-	}
-	free(*line);
-	*line = aux;
-}
-
 char	*line_getnext(int fd)
 {
 	static char	buff[BUFFER_SIZE + 1];
@@ -41,16 +21,16 @@ char	*line_getnext(int fd)
 
 	line = NULL;
 	n_read = -1;
-	while (!ft_strchr(line, '\n') && n_read != 0)
+	while (!gnl_strchr(line, '\n') && n_read != 0)
 	{
-		aux = ft_strchr(buff, '\n');
+		aux = gnl_strchr(buff, '\n');
 		if (aux++)
 		{
-			line_update(&line, buff, aux - buff);
-			ft_strlcpygnl(buff, aux, ft_strlen(aux) + 1);
+			new_str(&line, buff, aux - buff);
+			gnl_strlcpy(buff, aux, gnl_strlen(aux) + 1);
 			continue ;
 		}
-		line_update(&line, buff, ft_strlen(buff));
+		new_str(&line, buff, gnl_strlen(buff));
 		n_read = read(fd, buff, BUFFER_SIZE);
 		if (n_read < 0)
 			return (NULL);
