@@ -12,16 +12,16 @@
 
 #include <stddef.h>
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero(void *struc, size_t size)
 {
-	void	*save_end;
+	void	*aux;
 
-	save_end = s;
-	while (n > 0)
+	aux = struc;
+	while (size > 0)
 	{
-		*(char *)s = 0;
-		s++;
-		n--;
+		*(char *)struc = 0;
+		struc++;
+		size--;
 	}
-	s = save_end;
+	struc = aux;
 }
