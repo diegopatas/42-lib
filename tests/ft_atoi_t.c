@@ -1,0 +1,77 @@
+#include "Unity/src/unity.h"
+#include "tester.h"
+#include <limits.h>
+
+TEST_GROUP(ft_atoi);
+
+TEST_SETUP(ft_atoi) {
+}
+
+TEST_TEAR_DOWN(ft_atoi) {
+}
+
+static int	match(int expect, char *given) {
+	TEST_ASSERT_EQUAL_INT(expect, ft_atoi(given));
+	return 0;
+}
+
+TEST(ft_atoi, check_normal) {
+	match(0, "0");
+	match(1, "1");
+	match(0, "+0");
+	match(1, "+1");
+	match(-1, "-1");
+	match(98, "98");
+	match(256, "256");
+	match(-1024, "-1024");
+	match(2147483647, "2147483647");
+	match(-2147483648, "-2147483648");
+}
+TEST(ft_atoi, check_null) {
+	match(0, "");
+	match(0, " ");
+	match(0, "      ");
+}
+
+TEST(ft_atoi, check_limit) {
+	match(2147483647, "2147483647");
+	match(INT_MAX, "2147483647");
+
+	match(-2147483648, "-2147483648");
+	match(INT_MIN, "-2147483648");
+}
+
+TEST(ft_atoi, check_after) {
+	match(42, "42a11");
+	match(42, "42a");
+	match(42, "42 ");
+	match(42, "42 4");
+
+	match(-42, "-42a11");
+	match(-42, "-42a");
+	match(-42, "-42 ");
+	match(-42, "-42 93");
+}
+
+TEST(ft_atoi, check_before) {
+	match(42, " 42");
+	match(42, "    42");
+	match(42, " +42");
+	match(-42, " -42");
+
+	match(0, "a42");
+	match(0, "a+42");
+	match(0, "a-42");
+	match(0, " a42");
+	match(0, " a42");
+	match(0, "+ 42");
+	match(0, "- 42");
+}
+
+TEST_GROUP_RUNNER(ft_atoi) {
+	RUN_TEST_CASE(ft_atoi, check_normal);
+	RUN_TEST_CASE(ft_atoi, check_limit);
+	RUN_TEST_CASE(ft_atoi, check_after);
+	RUN_TEST_CASE(ft_atoi, check_before);
+	RUN_TEST_CASE(ft_atoi, check_null);
+}
