@@ -17,10 +17,17 @@ PATH_ROOT	= ..
 PATH_SRC	= $(PATH_ROOT)
 PATH_INCL	= $(PATH_ROOT)
 PATH_LIBFT	= $(PATH_ROOT)
+<<<<<<< HEAD
 PATH_TESTER	= $(PATH_ROOT)/tests
 PATH_UNITY	= $(PATH_TESTER)/Unity/src
 PATH_FIXTURE	= $(PATH_TESTER)/Unity/extras/fixture/src
 PATH_MEM	= $(PATH_TESTER)/Unity/extras/memory/src
+=======
+PATH_TESTS	= $(PATH_ROOT)/tests
+PATH_UNITY	= $(PATH_TESTS)/Unity/src
+PATH_FIXTURE	= $(PATH_TESTS)/Unity/extras/fixture/src
+PATH_MEM	= $(PATH_TESTS)/Unity/extras/memory/src
+>>>>>>> github/main
 
 # FILES
 SEARCH_INCL	= -I. -I$(PATH_INCL) -I$(PATH_UNITY) -I$(PATH_FIXTURE) -I$(PATH_MEM) 
@@ -30,7 +37,11 @@ HEADER_FIXTURE	= $(PATH_UNITY)/unity_fixture.h
 
 # SOURCES
 FILE_SRC	= $(wildcard $(PATH_SRC)/*c)
+<<<<<<< HEAD
 FILE_SRC	+= $(wildcard $(PATH_TESTER)/*c)
+=======
+FILE_SRC	+= $(wildcard $(PATH_TESTS)/*c)
+>>>>>>> github/main
 FILE_OBJ	= $(FILE_SRC:%.c=%.o)
 
 FILE_UNITY	= $(PATH_UNITY)/unity.c 
@@ -42,6 +53,7 @@ LIBFT		= $(PATH_LIBFT)/libft.a
 all: $(NAME)
 
 $(NAME): $(FILE_OBJ) $(HEADER)
+<<<<<<< HEAD
 	@$(LINKER) $(FLAG) $(FILE_UNITY) $(FILE_FIXTURE) $(FILE_OBJ) $(SEARCH_INCL) -o $@
 
 %.o: %.c $(HEADER)
@@ -49,6 +61,15 @@ $(NAME): $(FILE_OBJ) $(HEADER)
 
 clean:
 	@$(REMOVE_FORCE) $(FILE_OBJ)
+=======
+	$(LINKER) $(FLAG) $(FILE_UNITY) $(FILE_FIXTURE) $(FILE_OBJ) $(SEARCH_INCL) -o $@
+
+%.o: %.c $(HEADER)
+	$(COMPILER) $(SEARCH_INCL) $< -o $@
+
+clean:
+	$(REMOVE_FORCE) $(FILE_OBJ)
+>>>>>>> github/main
 
 fclean: clean
 	@$(REMOVE_FORCE) $(NAME)
@@ -62,7 +83,11 @@ test: all clean
 	./$(NAME)
 
 leak: all clean
+<<<<<<< HEAD
 	@$(VAL_MEMCHECK) $(FLAG_LEAK) ./$(NAME)
+=======
+	$(VAL_MEMCHECK) $(FLAG_LEAK) ./$(NAME)
+>>>>>>> github/main
 
 run: all clean
 	./$(NAME)

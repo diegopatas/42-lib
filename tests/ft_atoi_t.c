@@ -36,7 +36,6 @@ TEST(ft_atoi, check_null) {
 TEST(ft_atoi, check_limit) {
 	match(2147483647, "2147483647");
 	match(INT_MAX, "2147483647");
-
 	match(-2147483648, "-2147483648");
 	match(INT_MIN, "-2147483648");
 }
@@ -68,10 +67,27 @@ TEST(ft_atoi, check_before) {
 	match(0, "- 42");
 }
 
+TEST(ft_atoi, check_valid_char) {
+	TEST_ASSERT_EQUAL_INT(1, ft_atoi("1a2"));
+	TEST_ASSERT_EQUAL_INT(12, ft_atoi("12a"));
+	TEST_ASSERT_EQUAL_INT(12, ft_atoi(" 12 "));
+	TEST_ASSERT_EQUAL_INT(1, ft_atoi("1 2"));
+	TEST_ASSERT_EQUAL_INT(12, ft_atoi("12 "));
+	TEST_ASSERT_EQUAL_INT(-1, ft_atoi("-1 2"));
+	TEST_ASSERT_EQUAL_INT(-12, ft_atoi("-12 "));
+}
+
+TEST(ft_atoi, check_invalid_char) {
+	TEST_ASSERT_EQUAL_INT(0, ft_atoi("a12"));
+	TEST_ASSERT_EQUAL_INT(0, ft_atoi("- 12"));
+}
+
 TEST_GROUP_RUNNER(ft_atoi) {
 	RUN_TEST_CASE(ft_atoi, check_normal);
 	RUN_TEST_CASE(ft_atoi, check_limit);
 	RUN_TEST_CASE(ft_atoi, check_after);
 	RUN_TEST_CASE(ft_atoi, check_before);
 	RUN_TEST_CASE(ft_atoi, check_null);
+	RUN_TEST_CASE(ft_atoi, check_valid_char);
+	RUN_TEST_CASE(ft_atoi, check_invalid_char);
 }
