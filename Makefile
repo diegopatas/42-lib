@@ -29,23 +29,42 @@ SRC	+= ft_printf.c ft_itoag.c print_char.c print_str.c print_nbr.c \
 
 SRC	+= line_getnext.c line_getnextutils.c
 
+MAIN	= main_dev.c
+
 OBJ	= $(SRC:%.c=%.o)
 NAME	= libft.a
+BIN_DEV	= dev
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar -rc $(NAME) $^
+	@ar -rc $(NAME) $^
+	@echo "Compile libft -> OK"
 
 %.o: %.c %.h
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compile objects -> OK"
 
 .PHONY: all clean fclean re
 
 clean:
-	rm -rf $(OBJ) $(B_OBJ)
+	rm -rf $(OBJ) $(B_OBJ) $(BIN_DEV) tester
 
 fclean: clean
 	rm -rf $(NAME)
+
+dev: all 
+	@gcc -Wall -Werror -Wextra $(MAIN) libft.a -o $(BIN_DEV)
+	@echo "Compile dev -> OK\n"
+
+leak: dev
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(BIN_DEV)
+
+run: dev
+	./$(BIN_DEV)
+
+test: all
+	$(MAKE) -C ./tests all
+	mv ./tests/tester .
 
 re: fclean all

@@ -34,5 +34,5 @@ int	ft_atoi(const char *str)
 		}
 		return (number * sign);
 	}
-	return (NULL);
+	return (0);
 }
